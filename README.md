@@ -16,6 +16,7 @@ Target Website: https://www.saucedemo.com/
 
 ## Project Structure
 
+```text
 saucedemo-ui-automation/
 │
 ├── pages/                      # Page Objects (UI actions + locators)
@@ -33,8 +34,9 @@ saucedemo-ui-automation/
 │
 ├── conftest.py                 # Pytest fixtures (driver setup)
 ├── pytest.ini                  # Pytest markers config
+├── requirements.txt            # Project dependencies
 └── README.md
-
+```
 ---
 
 ## What This Framework Tests
