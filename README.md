@@ -71,6 +71,13 @@ Run a single test file:
 
 ---
 
+## Test Report
+Generate HTML report:
+pytest -q --html=reports.report.html --self-contained-html
+
+open it:
+open reports/report.html
+
 ## Notes
 - Tests are written using the Page Object Model (POM) structure.
 - conftest.py handles the browser setup/teardown using Pytest fixtures.
