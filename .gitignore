@@ -20,3 +20,6 @@ venv/
 
 # Reports
 reports/
+
+# Artifacts
+artifacts/
