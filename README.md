@@ -70,10 +70,18 @@ Run a single test file:
     pytest tests/test_checkout.py -q
 
 ---
+## Debug Artifacts on Failure
+
+When a test fails, the framework automatically saves:
+- Screenshot (`.png`)
+- Page source (`.html`)
+- Current URL + page title (`.txt`)
+
+These files are saved under the `artifacts/` folder (ignored by git).
 
 ## Test Report
 Generate HTML report:
-pytest -q --html=reports.report.html --self-contained-html
+pytest -q --html=reports/report.html --self-contained-html
 
 open it:
 open reports/report.html
