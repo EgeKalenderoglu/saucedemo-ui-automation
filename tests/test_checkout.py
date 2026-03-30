@@ -5,7 +5,7 @@ from pages.checkout_overview_page import CheckOutOverviewPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
-from selenium.webdriver.common.keys import Keys
+
 @pytest.mark.regression
 def test_checkout_flow_success(driver):
     cart_page = CartPage(driver)
@@ -25,7 +25,7 @@ def test_checkout_flow_success(driver):
 
     checkout_page.fill_information("ege", "kalenderoglu", "123")
     checkout_page.click_continue()
-    print(driver.current_url)
+
 
     checkout_overview_page.click_finish()
 
