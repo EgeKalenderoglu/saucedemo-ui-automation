@@ -1,11 +1,11 @@
 import pytest
 from pages.login_page import LoginPage
-
+from conftest import VALID_USERNAME, VALID_PASSWORD
 @pytest.mark.smoke
 def test_successful_login(driver):
     login_page = LoginPage(driver)
     login_page.open()
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login(VALID_USERNAME, VALID_PASSWORD)
     assert "inventory" in driver.current_url
 
 

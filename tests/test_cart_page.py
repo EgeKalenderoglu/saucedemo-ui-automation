@@ -2,6 +2,7 @@ import pytest
 from pages.cart_page import CartPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
+from conftest import VALID_USERNAME, VALID_PASSWORD
 
 @pytest.mark.regression
 def test_cart_page_contains_item_after_adding(driver):
@@ -10,7 +11,7 @@ def test_cart_page_contains_item_after_adding(driver):
     cart_page = CartPage(driver)
 
     login_page.open()
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
     inventory_page.add_first_product_to_cart()
     inventory_page.go_to_cart()

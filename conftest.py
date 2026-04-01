@@ -4,6 +4,9 @@ import tempfile
 from datetime import datetime
 import os
 
+VALID_USERNAME = "standard_user"
+VALID_PASSWORD = "secret_sauce"
+
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield

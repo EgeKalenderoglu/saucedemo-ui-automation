@@ -5,6 +5,7 @@ from pages.checkout_overview_page import CheckOutOverviewPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
+from conftest import VALID_USERNAME, VALID_PASSWORD
 
 @pytest.mark.regression
 def test_checkout_flow_success(driver):
@@ -16,7 +17,7 @@ def test_checkout_flow_success(driver):
     login_page = LoginPage(driver)
 
     login_page.open()
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
     inventory_page.add_first_product_to_cart()
     inventory_page.go_to_cart()
