@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+
 
 class CheckoutPage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 5)
+        self.wait = WebDriverWait(driver, 10)
 
     def fill_information(self, first_name, last_name, postal_code):
         first = self.wait.until(EC.element_to_be_clickable((By.ID, "first-name")))

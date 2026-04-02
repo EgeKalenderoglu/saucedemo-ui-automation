@@ -3,6 +3,9 @@ from selenium import webdriver
 import tempfile
 from datetime import datetime
 import os
+import logging
+from pathlib import Path
+
 
 VALID_USERNAME = "standard_user"
 VALID_PASSWORD = "secret_sauce"
@@ -13,8 +16,24 @@ def pytest_runtest_makereport(item, call):
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
 
+@pytest.fixture(scope="session", autouse=True)
+def configure_logging():
+    Path("logs").mkdir(exist_ok=True)
+    ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(message)s",
+        handlers=[
+            logging.FileHandler(f"logs/run_{ts}.log", encoding="utf-8"),
+            logging.StreamHandler(),
+        ],
+        force=True,
+    )
+    logging.info("Test session started")
+
 @pytest.fixture
 def driver(request):
+    logging.info(f"TEST START: {request.node.nodeid}")
     options = webdriver.ChromeOptions()
 
     # Run with a fresh clean Chrome profile every time
@@ -65,4 +84,11 @@ def driver(request):
 
             with open(html_path, "w", encoding="utf-8") as f:
                 f.write(driver.page_source)
+
+        if rep and rep.failed:
+            logging.error(f"TEST FAILED: {request.node.nodeid}")
+        elif rep and rep.passed:
+            logging.info(f"TEST PASSED: {request.node.nodeid}")
+
         driver.quit()
+        logging.info(f"TEST END: {request.node.nodeid}")
