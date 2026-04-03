@@ -26,3 +26,6 @@ artifacts/
 
 # Logs
 Logs/
+
+# env
+.env

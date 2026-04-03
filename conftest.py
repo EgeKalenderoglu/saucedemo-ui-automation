@@ -5,6 +5,7 @@ from datetime import datetime
 import os
 import logging
 from pathlib import Path
+from utils.ai_triage import analyze_failure
 
 
 VALID_USERNAME = "standard_user"
@@ -84,6 +85,14 @@ def driver(request):
 
             with open(html_path, "w", encoding="utf-8") as f:
                 f.write(driver.page_source)
+
+            analyze_failure(
+                test_name=request.node.nodeid,
+                exception_message=str(rep.longrepr),
+                current_url=driver.current_url,
+                page_title=driver.title,
+                page_source=driver.page_source,
+            )
 
         if rep and rep.failed:
             logging.error(f"TEST FAILED: {request.node.nodeid}")
