@@ -1,4 +1,5 @@
 # SauceDemo UI Automation Framework
+![CI](https://github.com/EgeKalenderoglu/saucedemo-ui-automation/actions/workflows/ci.yml/badge.svg)
 
 A UI test automation framework built with Python, Selenium, and Pytest using the Page Object Model (POM) design pattern. Features an AI-assisted failure triage layer that automatically analyzes test failures using the Claude API.
 
