@@ -37,6 +37,11 @@ def driver(request):
     logging.info(f"TEST START: {request.node.nodeid}")
     options = webdriver.ChromeOptions()
 
+    if os.environ.get("CI"):
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
     # Run with a fresh clean Chrome profile every time
     temp_profile = tempfile.mkdtemp()
     options.add_argument(f"--user-data-dir={temp_profile}")
