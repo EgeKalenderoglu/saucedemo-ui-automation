@@ -63,7 +63,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 Then open `.env` and add your Anthropic API key:
+```bash
 ANTHROPIC_API_KEY=your-key-here
+```
 ---
 
 ## How To Run Tests
