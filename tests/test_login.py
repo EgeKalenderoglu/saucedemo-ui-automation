@@ -16,3 +16,35 @@ def test_login_wrong_passwords_shows_error(driver):
     login_page.login("standard_user","wrong_password")
     error_text = login_page.get_error_message()
     assert "do not match" in error_text.lower()
+
+@pytest.mark.regression
+def test_login_no_username_no_password_shows_error(driver):
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login("", "")
+    error_text = login_page.get_error_message()
+    assert "username" in error_text.lower()
+
+@pytest.mark.regression
+def test_login_no_username_shows_error(driver):
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login("", VALID_PASSWORD)
+    error_text = login_page.get_error_message()
+    assert "username" in error_text.lower()
+
+@pytest.mark.regression
+def test_login_no_password_shows_error(driver):
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login(VALID_USERNAME, "")
+    error_text = login_page.get_error_message()
+    assert "password" in error_text.lower()
+
+@pytest.mark.regression
+def test_login_locked_out_user_shows_error(driver):
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login("locked_out_user", VALID_PASSWORD)
+    error_text = login_page.get_error_message()
+    assert "locked out" in error_text.lower()
